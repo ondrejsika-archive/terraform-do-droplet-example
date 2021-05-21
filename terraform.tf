@@ -28,6 +28,13 @@ resource "digitalocean_droplet" "droplet" {
   ssh_keys = [
     data.digitalocean_ssh_key.ondrejsika.id
   ]
+  user_data = <<-EOF
+  #cloud-config
+  ssh_pwauth: yes
+  password: asdfasdf2021
+  chpasswd:
+    expire: false
+  EOF
 }
 
 resource "cloudflare_record" "droplet" {
